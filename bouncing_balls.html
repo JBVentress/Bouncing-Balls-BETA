@@ -1473,6 +1473,23 @@
         window.addEventListener('load', () => {
             new LoadingManager().start();
         });
+        <button id="downloadHtmlBtn" class="mode-btn" style="margin:40px auto 0;display:block;max-width:300px;">
+  DOWNLOAD THIS PAGE AS HTML
+</button>
+<script>
+document.getElementById('downloadHtmlBtn').addEventListener('click', function() {
+    const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "bouncing_balls.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+});
+</script>
     </script>
 </body>
 </html>
